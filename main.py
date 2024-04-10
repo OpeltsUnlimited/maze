@@ -34,7 +34,12 @@ if __name__ == "__main__":
     cm.has_bottom_wall = False
     cm.has_left_wall = False
     cm.has_right_wall = False
-    cm.has_right_wall = False
-    cm.draw(120,140,120,140)
+    cm.has_top_wall = False
+    cm.draw(120,120,140,140)
+
+    cu.draw_move(cm)
+    cm.draw_move(cl)
+    cl.draw_move(cm, True)
+    cm.draw_move(cd)
 
     win.wait_for_close()
