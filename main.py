@@ -1,45 +1,16 @@
 from window import Window
-from line import Line
-from point import Point
-from cell import Cell
+from maze import Maze
 
 if __name__ == "__main__":
-    win = Window(800, 600)
+    rows = 12
+    cols = 16
+    margin = 50
+    screen_x = 800
+    screen_y = 600
+    cell_size_x = (screen_x - 2 * margin) / cols
+    cell_size_y = (screen_y - 2 * margin) / rows
+    win = Window(screen_x, screen_y)
 
-    p1 = Point(10,10)
-    p2 = Point(110,10)
-    p3 = Point(60,110)
-
-    l1 = Line(p1,p2)
-    l2 = Line(p2,p3)
-    l3 = Line(p3,p1)
-
-    win.draw_line(l1, "black")
-    win.draw_line(l2, "black")
-    win.draw_line(l3, "black")
-
-    cu = Cell(win)
-    cu.has_bottom_wall = False
-    cu.draw(120,100,140,120)
-    cr = Cell(win)
-    cr.has_left_wall = False
-    cr.draw(140,120,160,140)
-    cd = Cell(win)
-    cd.has_top_wall = False
-    cd.draw(120,140,140,160)
-    cl = Cell(win)
-    cl.has_right_wall = False
-    cl.draw(100,120,120,140)
-    cm = Cell(win)
-    cm.has_bottom_wall = False
-    cm.has_left_wall = False
-    cm.has_right_wall = False
-    cm.has_top_wall = False
-    cm.draw(120,120,140,140)
-
-    cu.draw_move(cm)
-    cm.draw_move(cl)
-    cl.draw_move(cm, True)
-    cm.draw_move(cd)
+    maze = Maze(margin, margin, rows, cols, cell_size_x, cell_size_y, win)
 
     win.wait_for_close()
